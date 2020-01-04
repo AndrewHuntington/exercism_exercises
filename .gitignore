@@ -1,0 +1,9 @@
+**/node_modules/
+**/*.json
+**/babel.config.js
+**/.exercism
+*.md
+!/README.md
+*_test.rb
+*.spec.js
+.eslintrc
