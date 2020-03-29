@@ -14,14 +14,10 @@ class HighScores
   end
 
   def personal_top_three
-    @scores.sort { |a, b| b <=> a }[0..2]
+    @scores.sort.reverse.take(3)
   end
 
   def latest_is_personal_best?
-    if latest == personal_best
-      return true
-    end
-
-    false
+    latest == personal_best
   end
 end
