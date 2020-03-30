@@ -1,3 +1,6 @@
+# second revision
+# made the code a little cleaner
+
 class Triangle
   def initialize(triangle)
     @triangle = triangle.sort
