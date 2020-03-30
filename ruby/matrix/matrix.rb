@@ -4,14 +4,14 @@ class Matrix
   end
 
   def rows
-    @matrix_string.split(/\n/).map(&:split).map { |x| x.map(&:to_i) }
+    @matrix_string.split(/\n/).map(&:split).map { |a| a.map(&:to_i) }
   end
 
   def columns
     columns = []
 
-    rows.each_with_index do |item, index|
-      columns[index] = rows.map { |x| x[index] }
+    rows.each_index do |index|
+      columns[index] = rows.map { |a| a[index] }
     end
 
     columns
