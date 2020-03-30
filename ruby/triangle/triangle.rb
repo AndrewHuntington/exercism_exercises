@@ -4,27 +4,23 @@ class Triangle
   end
 
   def is_valid_triangle?
-    !@triangle.any? { |side| side <= 0 } && (@triangle[0] + @triangle[1] >= @triangle[2])
+    @triangle.none? { |side| side <= 0 } && (@triangle[0] + @triangle[1] >= @triangle[2])
   end
 
   def is_degenerate?
-    return is_valid_triangle? if is_valid_triangle? == false
-    @triangle[0] + @triangle[1] == @triangle[2]
+    @triangle[0] + @triangle[1] == @triangle[2] && is_valid_triangle?
   end
 
   def equilateral?
-    return is_valid_triangle? if is_valid_triangle? == false
-    @triangle.all?(@triangle[0])
+    @triangle.all?(@triangle[0]) && is_valid_triangle?
   end
 
   def isosceles?
-    return is_valid_triangle? if is_valid_triangle? == false
-    @triangle[0] == @triangle[1] || @triangle[0] == @triangle[2] ||
-      @triangle[1] == @triangle[2]
+    (@triangle[0] == @triangle[1] || @triangle[0] == @triangle[2] ||
+      @triangle[1] == @triangle[2]) && is_valid_triangle?
   end
 
   def scalene?
-    return is_valid_triangle? if is_valid_triangle? == false
-    !(equilateral? || isosceles?)
+    !(equilateral? || isosceles?) && is_valid_triangle?
   end
 end
