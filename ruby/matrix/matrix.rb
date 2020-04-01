@@ -4,16 +4,10 @@ class Matrix
   end
 
   def rows
-    @matrix_string.split(/\n/).map(&:split).map { |a| a.map(&:to_i) }
+    @matrix_string.lines(chomp: true).map { |a| a.split.map(&:to_i) }
   end
 
   def columns
-    columns = []
-
-    rows.each_index do |index|
-      columns[index] = rows.map { |a| a[index] }
-    end
-
-    columns
+    rows.transpose
   end
 end
