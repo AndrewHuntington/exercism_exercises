@@ -2,7 +2,7 @@ class Grains
   def self.square(n)
     raise ArgumentError, "#{n} is out-of-bounds." if n <= 0 || n > 64
 
-    return 2**(n-1)
+    2**(n-1)
   end
 
   def self.total
