@@ -5,15 +5,9 @@ class Series
 
   def slices(n)
     raise ArgumentError, "Argument passed is too large." if n > @digits.length
-    series_array = []
-    i = 0
+    number_series = []
 
-    while (i + n) <= @digits.length
-      series_array << @digits[i...i+n]
-
-      i += 1
-    end
-
-    series_array
+    @digits.split('').each_cons(n) { |a| number_series << a.join }
+    number_series
   end
 end
