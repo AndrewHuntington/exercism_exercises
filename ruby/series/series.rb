@@ -7,7 +7,7 @@ class Series
     raise ArgumentError, "Argument passed is too large." if n > @digits.length
     number_series = []
 
-    @digits.split('').each_cons(n) { |a| number_series << a.join }
+    @digits.chars.each_cons(n) { |a| number_series << a.join }
     number_series
   end
 end
