@@ -4,6 +4,7 @@
 **/.exercism
 *.md
 !/README.md
-*_test.*
+*_test.rb
+*_test.sh
 *.spec.js
 .eslintrc
