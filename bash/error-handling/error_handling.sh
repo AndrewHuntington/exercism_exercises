@@ -1,16 +1,14 @@
 #!/bin/bash
-number_of_arguments=$#
-name=$1
-
 function main () {
-  if [[ number_of_arguments -eq 1 ]]; then
-    name=$name
+  local number_of_arguments=$#
+  local name=$1
+
+  if (( number_of_arguments == 1  )); then
+    echo "Hello, ${name}"
   else 
     echo "Usage: error_handling.sh <person>"
     exit 1
   fi
-
-  echo "Hello, ${name}"
 }
 
-main
+main "$@"
