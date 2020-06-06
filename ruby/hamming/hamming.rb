@@ -4,11 +4,9 @@ module Hamming
     raise ArgumentError, "Strands must be of equal length." if a.size != b.size
     
     hamming_distance = 0
-    index = 0 
 
-    while index < b.size
+    a.split('').each_index do |index|
       hamming_distance += 1 if a[index] != b[index]
-      index += 1
     end
   
     hamming_distance
