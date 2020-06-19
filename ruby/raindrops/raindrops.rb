@@ -6,23 +6,13 @@ module Raindrops
   module_function
 
   def convert(number)
-    case
-    when (number % 3).zero? && (number % 5).zero? && (number % 7).zero?
-      'PlingPlangPlong'
-    when (number % 5).zero? && (number % 7).zero?
-      'PlangPlong'
-    when (number % 3).zero? && (number % 7).zero?
-      'PlingPlong'
-    when (number % 3).zero? && (number % 5).zero?
-      'PlingPlang'
-    when (number % 3).zero?
-      'Pling'
-    when (number % 5).zero?
-      'Plang'
-    when (number % 7).zero?
-      'Plong'
-    else
-      number.to_s
-    end
+    raindrop = String.new
+
+    raindrop << 'Pling'    if (number % 3).zero?
+    raindrop << 'Plang'    if (number % 5).zero?
+    raindrop << 'Plong'    if (number % 7).zero?
+    raindrop = number.to_s if raindrop.empty?
+
+    raindrop
   end
 end
