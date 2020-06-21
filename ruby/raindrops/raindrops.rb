@@ -7,12 +7,10 @@ module Raindrops
 
   def convert(number)
     raindrop = String.new
+    drops = { 3 => 'Pling', 5 => 'Plang', 7 => 'Plong' }
 
-    raindrop << 'Pling'    if (number % 3).zero?
-    raindrop << 'Plang'    if (number % 5).zero?
-    raindrop << 'Plong'    if (number % 7).zero?
-    raindrop = number.to_s if raindrop.empty?
+    drops.each { |k, v| raindrop << v if (number % k).zero? }
 
-    raindrop
+    raindrop.empty? ? number.to_s : raindrop
   end
 end
