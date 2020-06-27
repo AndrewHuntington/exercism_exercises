@@ -6,5 +6,9 @@
 !/README.md
 *_test.rb
 *_test.sh
+*_test.py
+*.pyc
 *.spec.js
 .eslintrc
+**/.idea/*
+**/lastfailed*
