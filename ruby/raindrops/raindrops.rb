@@ -5,11 +5,12 @@
 module Raindrops
   module_function
 
+  DROPS = { 3 => 'Pling', 5 => 'Plang', 7 => 'Plong' }.freeze
+
   def convert(number)
     raindrop = String.new
-    drops = { 3 => 'Pling', 5 => 'Plang', 7 => 'Plong' }
 
-    drops.each { |k, v| raindrop << v if (number % k).zero? }
+    DROPS.each { |k, v| raindrop << v if (number % k).zero? }
 
     raindrop.empty? ? number.to_s : raindrop
   end
