@@ -2,13 +2,6 @@ DROPS = {3: 'Pling', 5: 'Plang', 7: 'Plong'}
 
 
 def convert(number):
-    raindrop = ''
+    raindrop = ''.join(DROPS[key] for key in DROPS if number % key == 0)
 
-    for key in DROPS:
-        if (number % key) == 0:
-            raindrop += DROPS[key]
-
-    if raindrop == '':
-        return str(number)
-    else:
-        return raindrop
+    return str(number) if raindrop == '' else raindrop
