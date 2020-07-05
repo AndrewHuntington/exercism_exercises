@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Returns the Scrabble score of a word
 class Scrabble
   SCORES = {
     %w[A E I O U L N R S T] => 1,
@@ -7,9 +10,13 @@ class Scrabble
     %w[K] => 5,
     %w[J X] => 8,
     %w[Q Z] => 10
-  }
+  }.freeze
 
-  def initialize
-    
+  def initialize(word)
+    @word = word
+  end
+
+  def score
+    0
   end
 end
