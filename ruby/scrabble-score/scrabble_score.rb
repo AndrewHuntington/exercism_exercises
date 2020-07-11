@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Returns the Scrabble score of a word
+# Calculates the Scrabble score of a given word
 class Scrabble
   SCORES = {
     %w[A E I O U L N R S T] => 1,
@@ -17,6 +17,20 @@ class Scrabble
   end
 
   def score
-    0
+    return 0 if @word.nil?
+
+    score = 0
+
+    @word.upcase.each_char do |char|
+      SCORES.each do |k, v|
+        score += v if k.include? char
+      end
+    end
+
+    score
+  end
+
+  def self.score(word)
+    new(word).score
   end
 end
