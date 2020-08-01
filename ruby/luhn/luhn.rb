@@ -3,24 +3,28 @@
 # Takes a string and returns a boolean value based on if it is valid
 # per the Luhn formula
 module Luhn
-  def self.valid?(value)
+  module_function
+
+  def valid?(value)
     return false if value.delete(' ').match?(/\D/) ||
                     value.delete(' ').length <= 1
 
-    numbers = value.delete(' ').scan(/\d/)
+    numbers = value.delete(' ').reverse.scan(/\d/)
 
-    binding.pry
+    new_value = run_calculations(numbers)
 
-    numbers.each.with_index do |digit, index|
-      if index.odd?
-        if digit * 2 < 10
-          binding.pry
-          digit * 2
-        else
-          binding.pry
-          digit * 2 - 9
-        end
+    new_value.zero? ? true : false
+  end
+
+  def run_calculations(values)
+    values.each.with_index do |digit, index|
+      next if index.even?
+
+      if digit.to_i * 2 < 10
+        values[index] = (digit.to_i * 2).to_s
+      else
+        values[index] = (digit.to_i * 2 - 9).to_s
       end
-    end
+    end.reverse.map(&:to_i).reduce(:+) % 10
   end
 end
