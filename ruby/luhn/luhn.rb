@@ -9,11 +9,11 @@ module Luhn
     return false if value.delete(' ').match?(/\D/) ||
                     value.delete(' ').length <= 1
 
-    numbers = value.delete(' ').reverse.scan(/\d/)
+    clean_value = value.delete(' ').reverse.scan(/\d/)
 
-    new_value = run_calculations(numbers)
+    test_value = run_calculations(clean_value)
 
-    new_value.zero? ? true : false
+    test_value.zero? ? true : false
   end
 
   def run_calculations(values)
