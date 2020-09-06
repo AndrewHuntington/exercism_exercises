@@ -11,29 +11,34 @@ class Luhn
     @value = value.delete(' ').reverse
   end
 
-  def valid?
-    # Gets rid of bogus data before performing the Luhn check
-    return false if @value.match?(/\D/) || @value.length <= 1
+  def input_is_valid?
+    true unless @value.match?(/\D/) || @value.length <= 1
+  end
 
-    luhn?
+  def valid?
+    input_is_valid? && luhn?
   end
 
   def digits
-    @digits ||= @value.scan(/\d/)
+    @digits ||= @value.scan(/\d/).map(&:to_i)
+  end
+
+  def doubled_digit(digit, index)
+    doubled_digit = digit * 2
+
+    digits[index] = if doubled_digit < 10
+                      doubled_digit
+                    else
+                      doubled_digit - 9
+                    end
   end
 
   def luhn?
     luhn = digits.each.with_index do |digit, index|
       next if index.even?
 
-      doubled_digit = digit.to_i * 2
-
-      if doubled_digit < 10
-        digits[index] = doubled_digit.to_s
-      else
-        digits[index] = (doubled_digit - 9).to_s
-      end
-    end.reverse.map(&:to_i).reduce(:+) % 10
+      doubled_digit(digit, index)
+    end.reduce(:+) % 10
 
     luhn.zero?
   end
