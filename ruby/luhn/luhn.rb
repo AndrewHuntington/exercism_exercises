@@ -8,31 +8,33 @@ class Luhn
   end
 
   def initialize(value)
-    @value = value.delete(' ')
+    @value = value.delete(' ').reverse
   end
 
   def valid?
+    # Gets rid of bogus data before performing the Luhn check
     return false if @value.match?(/\D/) || @value.length <= 1
 
-    clean_value
     luhn?
   end
 
-  def clean_value
-    @cleaned_value = @value.reverse.scan(/\d/)
+  def digits
+    @digits ||= @value.scan(/\d/)
   end
 
   def luhn?
-    @luhn = @cleaned_value.each.with_index do |digit, index|
+    luhn = digits.each.with_index do |digit, index|
       next if index.even?
 
-      if digit.to_i * 2 < 10
-        @cleaned_value[index] = (digit.to_i * 2).to_s
+      doubled_digit = digit.to_i * 2
+
+      if doubled_digit < 10
+        digits[index] = doubled_digit.to_s
       else
-        @cleaned_value[index] = (digit.to_i * 2 - 9).to_s
+        digits[index] = (doubled_digit - 9).to_s
       end
     end.reverse.map(&:to_i).reduce(:+) % 10
 
-    @luhn.zero?
+    luhn.zero?
   end
 end
