@@ -12,7 +12,7 @@ class Luhn
   end
 
   def input_is_valid?
-    true unless @value.match?(/\D/) || @value.length <= 1
+    !@value.match?(/\D/) && @value.length > 1
   end
 
   def valid?
@@ -34,10 +34,8 @@ class Luhn
   end
 
   def luhn?
-    luhn = digits.each.with_index do |digit, index|
-      next if index.even?
-
-      doubled_digit(digit, index)
+    luhn = digits.map.with_index do |digit, index|
+      index.even? ? digit : doubled_digit(digit, index)
     end.reduce(:+) % 10
 
     luhn.zero?
