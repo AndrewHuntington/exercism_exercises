@@ -23,19 +23,19 @@ class Luhn
     @digits ||= @value.scan(/\d/).map(&:to_i)
   end
 
-  def doubled_digit(digit, index)
+  def doubled_digit(digit)
     doubled_digit = digit * 2
 
-    digits[index] = if doubled_digit < 10
-                      doubled_digit
-                    else
-                      doubled_digit - 9
-                    end
+    if doubled_digit < 10
+      doubled_digit
+    else
+      doubled_digit - 9
+    end
   end
 
   def luhn?
     luhn = digits.map.with_index do |digit, index|
-      index.even? ? digit : doubled_digit(digit, index)
+      index.even? ? digit : doubled_digit(digit)
     end.reduce(:+) % 10
 
     luhn.zero?
