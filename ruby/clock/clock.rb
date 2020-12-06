@@ -7,17 +7,20 @@ class Clock
   end
 
   def format_hour(hour)
-    hour = hour % 24
+    hour = hour % 24 if hour > 23 || hour.negative?
     hour.to_s.rjust(2, '0')
   end
 
   def format_minute(minute)
-    if minute > 59 || minute.negative?
-      rollover = minute / 60
-      @hour = format_hour(@hour.to_i + rollover)
-      minute = minute % 60
-    end
+    minute = handle_minute_rollover(minute) if minute > 59 || minute.negative?
+
     minute.to_s.rjust(2, '0')
+  end
+
+  def handle_minute_rollover(minute)
+    rollover = minute / 60
+    @hour = format_hour(@hour.to_i + rollover)
+    minute % 60
   end
 
   def +(other)
