@@ -3,6 +3,8 @@
 // convenience to get you started writing code faster.
 //
 
-export const toRna = () => {
-  throw new Error("Remove this statement and implement this function");
+export const toRna = (input) => {
+  const dna = input;
+
+  return dna;
 };
