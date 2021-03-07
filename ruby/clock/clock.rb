@@ -1,47 +1,43 @@
+# frozen_string_literal: true
+
+# A clock that handles times without dates.
+# You can add and subtract minutes and hours from it.
+# Two clocks that represent the same time will be equal to each other.
 class Clock
   attr_reader :hour, :minute
 
   def initialize(hour: 0, minute: 0)
-    @hour = format_hour(hour)
-    @minute = format_minute(minute)
-  end
+    @hour = hour % 24
 
-  def format_hour(hour)
-    hour = hour % 24 if hour > 23 || hour.negative?
-    hour.to_s.rjust(2, '0')
-  end
-
-  def format_minute(minute)
     minute = handle_minute_rollover(minute) if minute > 59 || minute.negative?
-
-    minute.to_s.rjust(2, '0')
+    @minute = minute
   end
 
   def handle_minute_rollover(minute)
     rollover = minute / 60
-    @hour = format_hour(@hour.to_i + rollover)
+    @hour = (@hour + rollover) % 24
     minute % 60
   end
 
   def +(other)
-    hour = @hour.to_i + other.hour.to_i
-    minute = @minute.to_i + other.minute.to_i
+    hour = @hour + other.hour
+    minute = @minute + other.minute
 
     Clock.new(hour: hour, minute: minute)
   end
 
   def -(other)
-    hour = @hour.to_i - other.hour.to_i
-    minute = @minute.to_i - other.minute.to_i
+    hour = @hour - other.hour
+    minute = @minute - other.minute
 
     Clock.new(hour: hour, minute: minute)
   end
 
   def ==(other)
-    hour == other.hour && minute == other.minute
+    to_s == other.to_s
   end
 
   def to_s
-    "#{@hour}:#{@minute}"
+    format('%02<hour>d:%02<minute>d', hour: hour, minute: minute)
   end
 end
