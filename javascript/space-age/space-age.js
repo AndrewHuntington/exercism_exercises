@@ -14,7 +14,7 @@ export const age = (planet, seconds) => {
     'uranus' : 84.016846,
     'neptune': 164.79132
   };
-  const TIME_CONVERSTION = EARTH_YEAR_IN_SECONDS * ORBITAL_PERIODS[planet];
+  const TIME_CONVERSION = EARTH_YEAR_IN_SECONDS * ORBITAL_PERIODS[planet];
 
-  return Math.round(seconds / TIME_CONVERSTION * 100) / 100;
+  return Math.round(seconds / TIME_CONVERSION * 100) / 100;
 };
