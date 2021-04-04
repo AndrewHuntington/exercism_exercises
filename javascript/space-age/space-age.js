@@ -1,3 +1,5 @@
+// Calculates age in years for someone on a given planet when given an age in
+// seconds. Cuts off at and rounds the 100th decimal place.
 // FORMULA: NUMBER_OF_SECONDS / (EARTH_YEAR_IN_SECONDS * PLANET_OBRITAL_PERIOD)
 
 export const age = (planet, seconds) => {
