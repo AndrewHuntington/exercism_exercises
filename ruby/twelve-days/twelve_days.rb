@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-module TwelveDays
+# Returns the lyrics to "The Twelve Days of Christmas"
+class TwelveDays
   GIFTS = [
     'twelve Drummers Drumming', 'eleven Pipers Piping',
     'ten Lords-a-Leaping', 'nine Ladies Dancing',
@@ -16,21 +17,23 @@ module TwelveDays
     tenth: GIFTS[-10..], eleventh: GIFTS[-11..], twelfth: GIFTS[-12..]
   }.freeze
 
-  def self.opening(ordinal)
-    "On the #{ordinal} day of Christmas my true love gave to me:"
-  end
-
   def self.song
     lyrics = []
 
     DAYS.each do |k, v|
-      if k == :first
-        lyrics << "#{opening(k)} #{v[4..]}."
-      else
-        lyrics << "#{opening(k)} #{v.join(', ')}."
-      end
+      lyrics << if k == :first 
+                  "#{opening(k)} #{v[4..]}."
+                else
+                  "#{opening(k)} #{v.join(', ')}."
+                end
     end
 
-    lyrics.join("\n\n") + "\n"
+    "#{lyrics.join("\n\n")}\n"
   end
+
+  def self.opening(ordinal)
+    "On the #{ordinal} day of Christmas my true love gave to me:"
+  end
+
+  private_class_method :opening
 end
