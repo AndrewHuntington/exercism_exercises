@@ -7,8 +7,12 @@
 *_test.rb
 *_test.sh
 *_test.py
+*.test.ts
 *.pyc
 *.spec.js
 .eslintrc
 **/.idea/*
 **/lastfailed*
+.eslintignore
+yarn.lock
+jest.config.js

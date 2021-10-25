@@ -1,0 +1,20 @@
+interface codes {
+  [key: string]: number;
+}
+
+const colorCodes: codes = {
+  black: 0,
+  brown: 1,
+  red: 2,
+  orange: 3,
+  yellow: 4,
+  green: 5,
+  blue: 6,
+  violet: 7,
+  grey: 8,
+  white: 9,
+};
+
+export function decodedValue(colors: string[]): number {
+  return parseInt(`${colorCodes[colors[0]]}${colorCodes[colors[1]]}`);
+}
