@@ -1,20 +1,18 @@
-interface codes {
-  [key: string]: number;
-}
+const colorArray = [
+  "black",
+  "brown",
+  "red",
+  "orange",
+  "yellow",
+  "green",
+  "blue",
+  "violet",
+  "grey",
+  "white",
+] as const;
 
-const colorCodes: codes = {
-  black: 0,
-  brown: 1,
-  red: 2,
-  orange: 3,
-  yellow: 4,
-  green: 5,
-  blue: 6,
-  violet: 7,
-  grey: 8,
-  white: 9,
-};
+export type Color = typeof colorArray[number];
 
-export function decodedValue(colors: string[]): number {
-  return parseInt(`${colorCodes[colors[0]]}${colorCodes[colors[1]]}`);
+export function decodedValue([c1, c2]: Color[]): number {
+  return colorArray.indexOf(c1) * 10 + colorArray.indexOf(c2);
 }
