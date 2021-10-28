@@ -1,42 +1,53 @@
-//
-// This is only a SKELETON file for the 'DnD Character' exercise. It's been provided as a
-// convenience to get you started writing code faster.
-//
-
-export const abilityModifier = () => {
-  throw new Error("Remove this statement and implement this function");
+export const abilityModifier = (number) => {
+  if (number < 3 || number > 18) {
+    throw new Error(
+      `Ability scores ${
+        number < 3 ? "must be at least 3" : "can be at most 18"
+      }`
+    );
+  }
+  return Math.floor((number - 10) / 2);
 };
 
 export class Character {
   static rollAbility() {
-    throw new Error("Remove this statement and implement this function");
+    let roll = () => Math.floor(Math.random() * 6 + 1);
+    const rolls = [roll(), roll(), roll(), roll()].sort((a, b) => a - b);
+    return rolls[1] + rolls[2] + rolls[3];
   }
 
+  strength = Character.rollAbility();
+  dexterity = Character.rollAbility();
+  constitution = Character.rollAbility();
+  intelligence = Character.rollAbility();
+  wisdom = Character.rollAbility();
+  charisma = Character.rollAbility();
+
   get strength() {
-    throw new Error("Remove this statement and implement this function");
+    return strength;
   }
 
   get dexterity() {
-    throw new Error("Remove this statement and implement this function");
+    return dexterity;
   }
 
   get constitution() {
-    throw new Error("Remove this statement and implement this function");
+    return constitution;
   }
 
   get intelligence() {
-    throw new Error("Remove this statement and implement this function");
+    return intelligence;
   }
 
   get wisdom() {
-    throw new Error("Remove this statement and implement this function");
+    return wisdom;
   }
 
   get charisma() {
-    throw new Error("Remove this statement and implement this function");
+    return charisma;
   }
 
   get hitpoints() {
-    throw new Error("Remove this statement and implement this function");
+    return 10 + abilityModifier(this.constitution);
   }
 }
