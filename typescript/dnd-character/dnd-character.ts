@@ -8,6 +8,7 @@ export class DnDCharacter {
     let statRolls: number[] = new Array(4).fill(0);
     return statRolls
       .map((e) => e + roll1d6())
+      .sort((a: number, b: number) => a - b)
       .slice(1)
       .reduce((p, v) => p + v);
   }
