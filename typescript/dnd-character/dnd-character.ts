@@ -24,12 +24,12 @@ export class DnDCharacter {
     return Math.floor((abilityValue - 10) / 2);
   }
 
-  public strength: number = DnDCharacter.generateAbilityScore();
-  public dexterity: number = DnDCharacter.generateAbilityScore();
-  public constitution: number = DnDCharacter.generateAbilityScore();
-  public intelligence: number = DnDCharacter.generateAbilityScore();
-  public wisdom: number = DnDCharacter.generateAbilityScore();
-  public charisma: number = DnDCharacter.generateAbilityScore();
-  public hitpoints: number =
+  public readonly strength: number = DnDCharacter.generateAbilityScore();
+  public readonly dexterity: number = DnDCharacter.generateAbilityScore();
+  public readonly constitution: number = DnDCharacter.generateAbilityScore();
+  public readonly intelligence: number = DnDCharacter.generateAbilityScore();
+  public readonly wisdom: number = DnDCharacter.generateAbilityScore();
+  public readonly charisma: number = DnDCharacter.generateAbilityScore();
+  public readonly hitpoints: number =
     this.BASE_HP + DnDCharacter.getModifierFor(this.constitution);
 }
