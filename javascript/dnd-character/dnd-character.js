@@ -15,45 +15,29 @@ export const abilityModifier = (number) => {
   return Math.floor((number - 10) / 2);
 };
 
+const abilities = [
+  "strength",
+  "dexterity",
+  "constitution",
+  "intelligence",
+  "wisdom",
+  "charisma",
+];
+
 export class Character {
   static rollAbility() {
     let roll1d6 = () => Math.floor(Math.random() * 6 + 1);
-    const rolls = [roll1d6(), roll1d6(), roll1d6(), roll1d6()].sort(
-      (a, b) => a - b
-    );
-    return rolls.slice(1).reduce((p, c) => p + c);
+    return [...Array(4)]
+      .map(() => roll1d6())
+      .sort()
+      .slice(1)
+      .reduce((p, v) => p + v);
   }
 
-  // instance variables
-  strength = Character.rollAbility();
-  dexterity = Character.rollAbility();
-  constitution = Character.rollAbility();
-  intelligence = Character.rollAbility();
-  wisdom = Character.rollAbility();
-  charisma = Character.rollAbility();
-
-  get strength() {
-    return strength;
-  }
-
-  get dexterity() {
-    return dexterity;
-  }
-
-  get constitution() {
-    return constitution;
-  }
-
-  get intelligence() {
-    return intelligence;
-  }
-
-  get wisdom() {
-    return wisdom;
-  }
-
-  get charisma() {
-    return charisma;
+  constructor() {
+    for (const ability of abilities) {
+      this[ability] = Character.rollAbility();
+    }
   }
 
   get hitpoints() {
